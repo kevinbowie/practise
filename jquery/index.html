@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jQuery Crash Course - Selectors</title>
+	<style type="text/css">
+		body {
+			font-size: 17px;
+			font-family: arial;
+			background: #f4f4f4;
+			line-height: 1.5em;
+		}
+
+		header {
+			background: #333;
+			color: white;
+			padding: 20px;
+			text-align: center;
+			border-bottom: 4px solid black;
+			margin-bottom: 10px;
+		}
+
+		#container {
+			width: 90%;
+			margin: auto;
+			padding: 10px;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<h1>jQuery Crash Course</h1>
+	</header>
+
+	<div id="container">
+		<h1 id="heading1">Heading One</h1>
+		<p id="para1">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <span>Ut enim ad minim veniam</span>, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+		<h1 class="heading2">Heading Two</h1>
+		<p class="para2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <span>Ut enim ad minim veniam</span>, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+		<ul id="list">
+			<li>List Item</li>
+			<li>List Item</li>
+			<li>List Item</li>
+			<li>List Item</li>
+			<li>List Item</li>
+			<li>List Item</li>
+			<li>List Item</li>
+			<li>List Item</li>
+		</ul>
+
+		<input type="button" value="Button 1">
+		<input type="submit" value="Submit">
+		<input type="text">
+
+		<a href="https://www.google.com">Google</a>
+		<a href="https://www.yahoo.com">Yahoo</a>
+
+		<h3>Mouse Events</h3>
+		<button id="btn1">Button 1</button>
+		<button id="btn2">Button 2</button>
+		<button id="btn3">Toggle</button>
+		<p class="para1">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<h2 id="coords"></h2>
+		<hr>
+
+		<form id="form">
+			<label>Name</label><br>
+			<input type="text" name="name" id="name">
+			<br>
+			<label>Email</label><br>
+			<input type="email" name="email" id="email">
+			<br>
+			<label>Gender</label><br>
+			<select id="gender" name="gender">
+				<option value="male">Male</option>
+				<option value="female">Female</option>
+			</select>
+			<br>
+			<input type="submit" value="Submit">
+		</form>
+	</div>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		// $('h1#heading1').hide();
+		// $('p span').css('color', 'red')
+		// $('ul#list li:even').css('color', 'red');
+		// $('ul#list li:nth-child(3n)').css('list-style', 'none');
+		// $(':button').hide();
+		// $(':submit').hide();
+		// $('[href]').css('color', 'red');
+		// $('a[href="https://www.yahoo.com"]').css('color', 'green');
+		$(document).ready(function() {
+			// $('#btn1').click(function() {
+			// 	alert('button one clicked !');
+			// });
+
+			// $('#btn1').on('click', function() {
+			// 	$('.para1').hide();
+			// });
+
+			$('#btn2').on('click', function(e) {
+				$('.para1').show();
+				alert(e.target.id);
+			});
+
+			$('#btn3').on('click', function() {
+				$('.para1').toggle();
+			});
+
+			$('#btn1').dblclick(function() {
+				$('.para1').toggle();
+			});
+
+			//mouseenter + mouseleave
+			$('#btn1').hover(function() {
+				$('.para1').toggle();
+			});
+
+			//mousemove
+
+			$('#btn1').on('mousedown', function() {
+				$('.para1').toggle();
+			});
+
+			$('#btn1').on('mouseup', function() {
+				$('.para1').toggle();
+			});
+
+			$(document).on('mousemove', function(e) {
+				$('#coords').html('Coords: X:' + e.clientX + ' Y:' + e.clientY);
+			});
+
+			$('input').focus(function() {
+				$(this).css('background', 'pink');
+			});
+
+			$('input').blur(function() {
+				$(this).css('background', 'white');
+			});
+
+			$('input').keyup(function(e) {
+				console.log($(this).val());
+			});
+
+			$('select#gender').change(function() {
+				console.log($(this).val());
+			});
+
+			$('#form').submit(function(e) {
+				e.preventDefault();
+				let name = $('input#name').val();
+				let email = $('input#email').val();
+				console.log(name + ' ' + email);
+			});
+		});
+	</script>
+</body>
+</html>

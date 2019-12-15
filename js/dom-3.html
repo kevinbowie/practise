@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DOM Selection</title>
+	<style type="text/css">
+		* {
+			border: 2px solid #dedede;
+			padding: 15px;
+			margin: 15px;
+		}
+
+		html {
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			max-width: 600px;
+			margin: 30px auto;
+			font-family: sans-serif;
+			color: #333;
+		}
+
+		.biru-muda {
+			background-color: lightblue;
+		}
+
+		.biru {
+			background-color: blue;
+		}
+	</style>
+</head>
+<body>
+	<h1 id="judul">Hello World</h1>
+	<div id="container">
+		<section id="a">
+			<p class="p1">paragraf 1</p>
+			<a href="#">Instagram</a>
+			<p class="p2">paragraf 2</p>
+			<p class="p3" onclick="ubahWarnaByElement(this, 'lightblue');">paragraf 3</p>
+		</section>
+		<section id="b">
+			<p>paragraf 4</p>
+			<ul>
+				<li>item 1</li>
+				<li>item 2</li>
+				<li>item 3</li>
+			</ul>
+		</section>
+	</div>
+
+	<script type="text/javascript">
+		const p2 = document.querySelector('.p2');
+		const p3 = document.querySelector('.p3');
+		const p4 = document.querySelector('section#b p');
+
+		function ubahWarnaByElement(el, warna) {
+			el.style.backgroundColor = warna;
+		}
+
+		p4.addEventListener('click', function() {
+			const ul = document.querySelector('section#b ul');
+			const liBaru = document.createElement('li');
+			const textLiBaru = document.createTextNode('item baru');
+			liBaru.appendChild(textLiBaru);
+			ul.appendChild(liBaru); 
+		});
+
+		p3.addEventListener('mouseenter', function() {
+			p3.style.backgroundColor = 'red';
+		});
+
+		p3.addEventListener('mouseleave', function() {
+			p3.style.backgroundColor = 'white';
+		});
+	</script>
+</body>
+</html>

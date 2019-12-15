@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DOM Selection</title>
+	<style type="text/css">
+		* {
+			border: 2px solid #dedede;
+			padding: 15px;
+			margin: 15px;
+		}
+
+		html {
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			max-width: 600px;
+			margin: 30px auto;
+			font-family: sans-serif;
+			color: #333;
+		}
+
+		.biru-muda {
+			background-color: lightblue;
+		}
+
+		.biru {
+			background-color: blue;
+		}
+	</style>
+</head>
+<body>
+	<h1 id="judul">Hello World</h1>
+	<div id="container">
+		<section id="a">
+			<p class="p1">paragraf 1</p>
+			<a href="#">Instagram</a>
+			<p class="p2">paragraf 2</p>
+			<p class="p3">paragraf 3</p>
+		</section>
+		<section id="b">
+			<p>paragraf 4</p>
+			<ul>
+				<li>item 1</li>
+				<li>item 2</li>
+				<li>item 3</li>
+			</ul>
+		</section>
+	</div>
+
+	<script type="text/javascript">
+		// DOM Selection
+		const judul = document.getElementById('judul');
+		judul.style.color = 'red';
+		judul.style.backgroundColor = '#ccc';
+		judul.innerHTML = '<em>Ini Adalah Judul</em>';
+
+		judul.setAttribute('name', 'judul');
+
+		const p = document.getElementsByTagName('p');
+		for(let i=0;i<p.length;i++) {
+			p[i].style.color = 'gray';
+		}
+
+		const h1 = document.getElementsByTagName('h1')[0];
+		h1.style.fontSize = '50px';
+
+		const p1 = document.getElementsByClassName('p1');
+		p1.innerHTML = 'Ini diubah pakai DOM';
+
+		const p4 = document.querySelector('#b p');
+		p4.style.color = 'green';
+		p4.style.fontSize = '30px';
+
+		const li2 = document.querySelector('section#b ul li:nth-child(2)');
+		li2.style.backgroundColor = 'orange';
+
+		const pSelector = document.querySelectorAll('p');
+		for(let i=0;i<pSelector.length;i++) 
+			pSelector[i].innerHTML = 'Text ini diubah melalui querySelectorAll';
+
+		const sectionB = document.getElementById('b');
+		const p4Section = sectionB.querySelector('p');
+		p4Section.style.backgroundColor = 'orange'; 
+
+		const a = document.querySelector('section#a a');
+		a.setAttribute('id', 'linkIg');
+		console.log(a.getAttribute('id'));
+		a.removeAttribute('href');
+
+		const p2 = document.querySelector('.p2');
+		p2.classList.add('label');
+		p2.classList.remove('label');
+		p2.classList.toggle('biru-muda');
+		p2.classList.replace('biru-muda', 'biru');
+		console.log(p2.classList.item(1));
+		console.log(p2.classList.contains('biru-muda'));
+	</script>
+</body>
+</html>

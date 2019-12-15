@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ajax 1 - Text File</title>
+</head>
+<body>
+	<button id="btnAjax">Get Text File</button>
+	<br><br>
+	<div id="text"></div>
+
+	<script type="text/javascript">
+		document.getElementById('btnAjax').addEventListener('click', loadText);
+
+		function loadText() {
+			// Create XHR Object
+			let xhr = new XMLHttpRequest();
+			// OPEN = type, ulr/file, async
+			xhr.open('GET', 'sample-ajax.txt', true);
+
+			console.log('READYSTATE: ', xhr.readyState);
+
+			// OPTIONAL - used for loader
+			// readystate = 3
+			xhr.onprogress = function() {
+				console.log('READYSTATE onprogress: ', xhr.readyState);
+			}
+
+			// onload berjalan jika readyState = 4
+			// lebih baik wajib tambah onerror
+			xhr.onload = function() {
+				console.log('READYSTATE onload: ', xhr.readyState);
+				if(this.status == 200) {
+					// console.log(this.responseText);
+					document.getElementById('text').innerHTML = this.responseText;
+				}
+				else if(this.status == 404) {
+					document.getElementById('text').innerHTML = 'Not Found';
+				}
+			}
+
+			xhr.onerror = function() {
+				console.log('Request Error...');
+			}
+
+			// onreadystatechange berjalan dari 1 s/d 4
+			xhr.onreadystatechange = function() {
+				console.log('READYSTATE onreadystatechange	: ', xhr.readyState);
+				if(this.readyState == 4 && this.status == 200) {
+
+				}
+			}
+
+			xhr.send();
+
+			// readyState values
+			// 0 : request not initialized
+			// 1 : server connection established
+			// 2 : request received
+			// 3 : processing request
+			// 4 : request finished and response is ready
+
+			// HTTP statuses
+			// 200 : OK
+
+		}
+	</script>
+</body>
+</html>

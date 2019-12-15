@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Timing Function</title>
+</head>
+<body>
+	<h1 id="teks">Hello World</h1>
+	<button id="tombol">Berhenti!</button>
+</body>
+
+<script type="text/javascript">
+	const tglTujuan = new Date('Dec 10, 2019, 16:00:00').getTime();
+
+	const hitungMundur = setInterval(function() {
+		const tglSkrg = new Date().getTime();
+		const selisih = tglTujuan - tglSkrg;
+
+		const hari = Math.floor(selisih / (1000 * 60 * 60 * 24));
+		const jam = Math.floor(selisih % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
+		const menit = Math.floor(selisih % (1000 * 60 * 60) / (1000 * 60));
+		const detik = Math.floor(selisih % (1000 * 60) / (1000));
+
+		const teks = document.getElementById('teks');
+
+		teks.innerHTML = 'Waktu anda tersisa : ' + hari + ' hari ' + jam + ' jam ' + menit + ' menit ' + detik + ' detik lagi !';
+
+		if (selisih == 0) {
+			clearInterval(hitungMundur);
+			teks.innerHTML = 'Waktu anda habis !';
+		}
+	}, 1000);
+</script>
+</html>
