@@ -1,0 +1,157 @@
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: #ddd;
+	line-height: 1.65;
+	padding-bottom: 1000px;
+}
+
+/*Exercise 1*/
+.container-one {
+	width: 800px;
+	margin: 50px auto;
+	background-color: white;
+	padding: 20px;
+	box-sizing: border-box;
+	display: flex;
+}
+
+.main {
+	flex: 3;
+	order: 2;
+}
+
+.sidebar-one {
+	flex: 1;
+	order: 1;
+}
+
+.sidebar-two {
+	flex: 1;
+	order: 3;
+}
+/*End Exercise 2*/
+
+/*Exercise 2*/
+.container-two {
+	max-width: 800px;
+	margin: 50px auto;
+}
+
+.service {
+	padding: 20px;
+	box-sizing: border-box;
+	margin-bottom: 20px;
+}
+
+.service.one {
+	background-color: rgb(119, 119, 255);
+}
+
+.service.two {
+	background-color: rgb(103, 216, 103);
+}
+
+.service.three {
+	background-color: rgb(255, 124, 124);
+}
+
+/*End Exercise 2*/
+
+/*Exercise 3*/
+.container-three {
+	max-width: 800px;
+	margin: 50px auto;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.thumbnail {
+	width: 50%;
+}
+
+.thumbnail img {
+	width: 100%;
+}
+/*End Exercise 3*/
+
+/*Exercise 4*/
+.container-four {
+	width: 800px;
+	margin: 50px auto;
+	display: flex;
+}
+
+.card {
+	border: 1px solid #aaa;
+	border-radius: 10px;
+	background-color: #eee;
+	margin: 10px;
+	flex: 1;
+	overflow: hidden;
+}
+
+.card .header {
+	height: 150px;
+	background-color: #666;
+}
+
+.card .content {
+	text-align: center;
+	padding-bottom: 20px;
+}
+
+.card.big {
+	transform: scale(1.12);
+}
+/*End Exercise 4*/
+
+/*Excercise 5*/
+.container-five {
+	width: 500px;
+	height: 500px;
+	margin: 50px auto;
+	border: 5px solid black;
+	display: flex;
+}
+
+.box {
+	width: 100px;
+	height: 100px;
+	background-color: brown;
+	color: white;
+	text-align: center;
+	/*traditional way (before add span)
+	line-height: 100px;
+	margin: 250px auto;
+	transform: translateY(-50px);*/
+	margin: auto;
+	display: flex;
+}
+
+.box span {
+	margin: auto;
+}
+/*End Exercise 5*/
+
+/*Responsive*/
+@media(min-width: 600px) {
+	.container-two {
+		display: flex;
+		justify-content: space-between;
+	}
+	
+	.service {
+		width: 30%;
+	}
+
+	.thumbnail {
+		width: 25%;
+	}
+}
+/*End Response*/

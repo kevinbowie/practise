@@ -1,0 +1,43 @@
+.container {
+	width: 600px;
+	border: 5px solid #333;
+	margin: 30px auto;
+	padding: 5px;
+	box-sizing: border-box;
+	display: flex;
+	/*flex-direction: row | row-reverse | column | column-reverse;*/
+	/*flex-wrap: nowrap | wrap | wrap-reverse; -> default is nowrap, so the children will always try to fit the parent (even the size is not fit)*/
+	/*justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly -> this atribut is for main axis, it will set the range between children/items*/
+	/*align-items: flex-start | flex-end | center | stretch | baseline -> this atribut is for cross axis, works like justify-content. We can combine justify-content and align-items to make items position to center vertical and horizontal*/
+	/*align-content: flex-start | flex-end | center | stretch | space-between | space-around -> this atribut works if more than 1 row, it will set all items position*/
+}
+
+/*old style using float and clear both*/
+/*.container::after {
+	content: '';
+	display: block;
+	clear: both;
+}*/
+
+.container div {
+	width: 100px;
+	height: 100px;
+	/*try to delete width and height, and use flex-grow, the items will fit their parent*/
+	/*flex-grow | flex: 1*/
+	background-color: rgb(19, 133, 255);
+	margin: 2px;
+	/*float: left;*/
+}
+
+/*default order for all items is order: 0*/
+/*.satu { order: 3; }
+.dua { order: 4; }
+.tiga { order: 2; }
+.empat { order: 1; }*/
+
+/*this will make div.dua 2x bigger*/
+/*.container div.dua {
+	flex: 2;
+	/* below atribut is only set for one item
+	align-self: auto | flex-start | flex-end | center |baseline | stretch;
+}*/
