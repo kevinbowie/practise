@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fiter, Map, & Reduce</title>
+</head>
+<body>
+	<h3>My Videos</h3>
+	<ul>
+		<li data-duration="15:27">Teknik Podomoro</li>		
+		<li data-duration="11:18">JAVASCRIPT LANJUTAN | Higher Order Functions</li>		
+		<li data-duration="21:40">JAVASCRIPT LANJUTAN | This pada Arrow Function</li>		
+		<li data-duration="19:38">Website Penipu</li>		
+		<li data-duration="12:10">JAVASCRIPT LANJUTAN | Arrow Function</li>		
+		<li data-duration="20:43">JAVASCRIPT LANJUTAN | Closure</li>		
+		<li data-duration="14:30">#TANYAPADIKA EP005</li>		
+		<li data-duration="26:38">JAVASCRIPT LANJUTAN | Execution Context</li>		
+		<li data-duration="17:33">JAVASCRIPT LANJUTAN | Prototype</li>		
+		<li data-duration="10:39">JAVASCRIPT LANJUTAN | Object.create()</li>		
+		<li data-duration="17:31">JAVASCRIPT LANJUTAN | Object (Revisited)</li>		
+		<li data-duration="14:25">5 Tips Bertanya Ketika Error</li>		
+	</ul>
+
+	<h3>My Playlist</h3>
+	<ol>
+		<li>
+			<h4>Javascript Lanjutan</h4>
+			<p>Jumlah Video : <span class="jumlah-video"></span></p>
+			<p>Total Durasi : <span class="total-durasi"></span></p>
+		</li>
+	</ol>
+
+<script type="text/javascript">
+// Array Filter, Map, Reduce
+// will create new Array 
+
+const angka = [-1, 8, 9, 1, 4, -5, -4, 3, 2, 9];
+
+// Without Filter
+// find angka >= 3
+// const newAngka = [];
+// for(let i=0;i<angka.length;i++) {
+// 	if (angka[i] >= 3) {
+// 		newAngka.push(angka[i]);
+// 	}
+// }
+// console.log(newAngka);
+// End Without Filter
+
+
+// Filter
+// const newAngka = angka.filter(function(a) {
+// 	return a >= 3;
+// });
+// or
+// const newAngka = angka.filter(a => a>= 3);
+// console.log(newAngka);
+// End Filter
+
+
+// Map
+// return *2 for all elements in angka
+// const newAngka = angka.map(a => a * 2);
+// console.log(newAngka);
+// End Map
+
+
+// Reduce
+// sum all elements in angka
+// default start value is 0, its optional argumen
+// const newAngka = angka.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+// or
+// const newAngka = angka.reduce(function(accumulator, currentValue) {
+// 	return accumulator + currentValue;
+// }, 6);
+// console.log(newAngka);
+// End Reduce
+
+
+// Method Chaining
+// Find angka > 5, *3 each of the results, /2 each elements, sum them
+const hasil = angka.filter(a=> a > 5)
+	.map(a => a * 3)
+	.map(a => a / 2)
+	.reduce((acc, curr) => acc + curr);
+console.log(hasil);
+</script>
+
+
+<script type="text/javascript">
+// convert NodeList to Array
+const videos = Array.from(document.querySelectorAll('li[data-duration]'));
+
+let jsLanjutanDetik = videos.filter(video => video.textContent.includes('JAVASCRIPT LANJUTAN'))
+	.map(item => item.dataset.duration)
+	.map(waktu => {
+		const parts = waktu.split(':').map(part => parseFloat(part));
+		return parts[0] * 60 + parts[1];
+	})
+	.reduce((total, detik) => total + detik);
+
+const jam = Math.floor(jsLanjutanDetik / 3600);
+jsLanjutanDetik = jsLanjutanDetik - jam * 3600;
+const menit = Math.floor(jsLanjutanDetik / 60);
+const detik = Math.floor(jsLanjutanDetik - menit * 60);
+
+const jlhVideo = videos.filter(video => video.textContent.includes('JAVASCRIPT LANJUTAN')).length;
+
+const pDurasi = document.querySelector('.total-durasi');
+const pJlhVideo = document.querySelector('.jumlah-video');
+pDurasi.textContent = `${jam} Jam, ${menit} Menit, ${detik} Detik.`;
+pJlhVideo.textContent = `${jlhVideo} Videos`;
+</script>
+</body>
+</html>

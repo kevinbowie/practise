@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Promise</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+// const movies = fetch('http://www.omdbapi.com/?apikey=58375aff&s=avengers'); //return as Promise
+/* below is Fetch for ajax
+fetch('http://www.omdbapi.com/?apikey=58375aff&s=avengers')
+ 	.then(response => response.json())
+ 	.then(response =>console.log(response));
+*/
+
+// Promise
+// Object that represents success / error of Async event for future
+// janji (dipenuhi / diingkari)
+// states (fulfilled / rejected / pending)
+// callback (resolve / reject / finally) -> finally for both (resolve / reject) but it will execute first before them
+// action (then / catch)
+
+
+// ex. 1
+/*
+let isFullfilled = true;
+const prom1 = new Promise((resolve, reject) => {
+	if (isFullfilled) {
+		resolve('State is fullfilled');
+	}
+	else {
+		reject('State is rejected');
+	}
+})
+// console.log(prom1);
+prom1.then(response => console.log('ok : ' + response))
+	.catch(response => console.log('not ok : ' + response));
+*/
+
+// ex. 2
+/*
+let isFullfilled = true;
+const prom2 = new Promise((resolve, reject) => {
+	if (isFullfilled) {
+		setTimeout(() => resolve('State is fullfilled'), 2000);
+	}
+	else {
+		setTimeout(() => resolve('State is rejected'), 2000);
+	}
+});
+
+console.log('start');
+console.log('Pending '); console.log(prom2);
+prom2.finally(() => console.log('finish pending'))
+	.then(response => console.log('ok : ' + response))
+	.catch(response => console.log('not ok : ' + response));
+console.log('end');
+*/
+
+
+// Promise.all()
+const film = new Promise(resolve => {
+	setTimeout(() => {
+		resolve([{
+			judul: 'Avengers',
+			sutradara: 'Sandhika',
+			pemeran: 'Doddy'
+		}])
+	}, 1000);
+});
+
+const cuaca = new Promise(resolve => {
+	setTimeout(() => {
+		resolve([{
+			kota: 'Bandung',
+			temp: 26,
+			kondisi: 'Cerah Berawan'
+		}])
+	}, 500);
+});
+
+// film.then(response => console.log(response));
+// cuaca.then(response => console.log(response));
+Promise.all([film, cuaca])
+	// .then(response => console.log(response)); //response as Array
+	// or
+	.then(response => {
+		const [film, cuaca] = response;
+		console.log(film);
+		console.log(cuaca);
+	});
+</script>

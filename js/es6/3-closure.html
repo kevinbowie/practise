@@ -1,0 +1,78 @@
+<script type="text/javascript">
+	// EXECUTION CONTEXT, HOISTING & SCOPE
+
+	// console.log(nama); ->before declare variable, it will return error
+	// var nama = 'Sandhika';
+	// above code will return undefined, not Error.
+	// when execute js, creation phase happens in Global Context
+	// js will set all variable to top to 'var variable_name = undefined', and the function()
+	// We call this Hoisting
+	// window = global object
+	// this = window
+	// after creation next it execution phase
+
+	// inside function also create Local Execution Context
+	// inside Local Execution we can access window, arguments, have local hoisting
+
+	// function a() {
+	// 	console.log('ini a');
+
+	// 	function b() {
+	// 		console.log('ini b');
+
+	// 		function c() {
+	// 			console.log('ini c');
+	// 		}
+
+	// 		c();
+	// 	}
+
+	// 	b();
+	// }
+
+	// a();
+
+	// steps
+	// hoisting b(), console.log(a), execute b(), hoisting c(), console.log(b), execute c(), console.log(c); 
+
+
+
+	var name = 'Sandhika Galih';
+	var username = '@sandhikagalih';
+
+	function cetakURL() {
+		console.log(arguments);
+		var instagramURL = 'http://instagram.com/';
+		return instagramURL + username;
+	}
+
+	console.log(cetakURL('@doddy'));
+	// return http://instagram.com/@sandhikagalih
+
+	// although in function we don't declare params, but we set it when we call the function, the params still will be saved in arguments as Array, that's why it is not an ERROR
+
+	// username is not defined in params / variable Scope Context, so it will search the variable at its parent
+
+
+
+	// function satu() {
+	// 	var nama = 'Sandhika';
+	// 	console.log(nama);
+	// }
+
+	// function dua() {
+	// 	console.log(nama);
+	// }
+
+	// console.log(nama);
+	// var nama = 'Erik';
+	// satu();
+	// dua('Doddy');
+	// console.log(nama);
+
+	// returnnya
+	// undefined, Sandhika, Erik, Erik
+	// steps -> hoisting nama = undefined, execute satu() and dua(),
+
+	// console.log(nama), nama = Erik, function satu() and hoisting, nama = 'Sandhika', console.log(nama), function dua() dan console.log(global variable 'nama'), console.log(nama)
+</script>

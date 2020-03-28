@@ -1,0 +1,90 @@
+<script type="text/javascript">
+// Destructuring Variable / Assignment
+// Syntax to unpackaging value of array OR propery of object into separate Variable
+
+const coba = ['satu', 'dua', 'tiga'];
+const [a, b, c] = coba;
+console.log(a + " " + b + " " + c);
+
+const mhs = {
+	nama: 'Kevin',
+	umur: 30,
+	email: 'kevin@gmail.com'
+};
+
+// for Object, variable name must equal to its property name
+const {nama, umur, email} = mhs;
+console.log(`${nama} ${umur} ${email}`);
+
+// skipping items
+const perkenalan = ['Halo', 'nama', 'saya', 'Kevin'];
+const [salam, , , nama] = perkenalan;
+
+// swap items
+let a = 1;
+let b = 2;
+[a, b] = [b, a];
+
+function arr() {
+	return [1, 2];
+}
+
+const ar = arr();
+console.log(ar); // return as Array
+// or
+const [x, y] = arr();
+console.log(`${x} ${y}`);
+
+// Rest parameters
+const [i, ...values] = [1, 2, 3, 4, 5];
+console.log(i); //return 1
+console.log(values); //return as Array [2, ..., 5];
+
+
+
+// Destructuring Object
+const mahasiswa = {
+	nama: 'Kevin',
+	umur: 30
+};
+
+// Assignment without Object Declaration
+// ({...} = {...});
+({ nama, umur } = {
+	nama: 'Kevin',
+	umur: 30
+});
+
+// Assign to new Variable
+// const {nama: n, umur: u} = mahasiwa;
+// console.log(`${n} ${u}`);
+
+// Give Default Value
+// const {nama, umur, email = 'email@default.com'} = mahasiwa;
+// console.log(${email});
+
+// Rest Params
+const {nama, ...values} = mahasiwa;
+console.log(values);
+
+// get 
+const mahasiswas = {
+	id: 123,
+	nama: 'Kevin',
+	umur: 30
+};
+
+// Normal
+// function getIdMhs(mahasiswas) {
+// 	return mahasiswas.id;
+// }
+// console.log(getIdMhs(mahasiswas));
+// End Normal
+
+// Destructuring Variable
+function getIdMhs({ id }) {
+	return id;
+}
+console.log(getIdMhs(mahasiswas));
+// End 
+</script>

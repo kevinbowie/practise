@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		.box {
+			width: 100px;
+			height: 100px;
+			border: 1px solid black;
+			margin: 50px auto;
+			transition: .3s width,
+						.3s height .3s,
+						.3s margin-top .3s,
+						1s background-color;
+		}
+
+		.size {
+			width: 150px;
+			height: 150px;
+			margin-top: 25px;
+		}
+
+		.caption {
+			background-color: black;
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+
+<script type="text/javascript">
+	// Function Expression
+	// const tampilNama = function(nama) {
+	// 	return `Halo, ${nama}`;
+	// }
+
+	// const tampilNama = (nama) => {
+	// 	return `Halo, ${nama}`;
+	// }
+	
+	// if only one param, we can use without ()
+	// const tampilNama = nama => {
+	// 	return `Halo, ${nama}`;
+	// }
+
+	// without params
+	// const tampilNama = () => 'Hello World';
+
+	// implisit return (no need keyword return)
+	const tampilNama = nama => `Halo, ${nama}`;
+
+	console.log(tampilNama('Sandhika'));
+
+
+
+	// Other example
+	let mhs = ['Sandhika', 'Kevin', 'Doddy'];
+
+	// let jumlahHuruf = mhs.map(function(nama) {
+	// 	return nama.length;
+	// });
+
+	// let jumlahHuruf = mhs.map(nama => nama.length);
+	// console.log(jumlahHuruf);
+
+
+	// what if we want return object ? add ({})
+	let jumlahHuruf = mhs.map(nama => ({ 
+		nama: nama, 
+		jmlHuruf: nama.length
+	}));
+	// above function, if the object has same property and variable (nama: nama), we could type nama
+	console.table(jumlahHuruf);
+
+
+
+
+	// context this in Arrow Function is different than normal Function
+	// Constructor Function
+	const Mahasiswa = function() {
+		// context this is referring to Mahasiswa
+		this.nama = 'Sandhika';
+		this.umur = 33;
+		this.sayHello = () => {
+			console.log(`Halo, nama saya ${this.nama} umur saya ${this.umur}`);
+		}
+	}
+
+	const sandhika = new Mahasiswa();
+
+	// Arrow Function
+	// below is error (we can't use it for create Constructor Function)
+	// const Mahasiswa = () => ...
+	// Actually Arrow Function does not save context this
+
+
+	// Object Literal
+	// if below method sayHello() we change to Arrow Function, the context 'this' will be undefined. Why ?
+	// In Constructor Function have 'this', but here in Object Literal does not. so when lexical scope try to find 'this', it does not found until this = Window
+	const mhs1 = {
+		nama: 'Sandhika',
+		umur: 33,
+		sayHello: function() {
+			console.log(`Halo, nama saya ${this.nama}, dan umur saya ${this.umur}`);
+		}
+	}
+
+
+	// Other example
+	const Mahasiswa = function() {
+		this.nama = 'Sandhika';
+		this.umur = 33;
+		this.sayHello = () => {
+			console.log(`Halo, nama saya ${this.nama} umur saya ${this.umur}`);
+		}
+		// above Function Expression.
+		// below Function Declaration will be Hoisting
+		// will return NAN (this = Window)
+		// this.umur = undefined
+		// setInterval(function() {
+		// 	console.log(this.umur++);
+		// }, 500);
+		
+		// but with Arrow Function, 'this' will work !
+		// because it does not have 'this' concept
+		// setInterval(() => {
+		// 	console.log(this.umur++);
+		// }, 500);
+	}
+
+	const sandhika = new Mahasiswa();
+
+
+
+	const box = document.querySelector('.box');
+	box.addEventListener('click', function() {
+		// 'this' returns element <div class='box'>
+		let satu = 'size';
+		let dua = 'caption';
+
+		if (this.classList.contains(satu)) {
+			[satu, dua] = [dua, satu];
+		}
+		
+		this.classList.toggle('size');
+
+		// 'this' in below (Function Declaration) = Window
+		// remember, it will be Hoisting first when execute JS, so 'this' referres to Window
+		// now change it to Arrow Function
+		setTimeOut(() => {
+			this.classList.toggle('caption');
+		});
+	});
+</script>
+</body>
+</html>

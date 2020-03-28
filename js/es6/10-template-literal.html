@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .hl {
+            background-color: salmon;
+        }
+    </style>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+// Tagged Templates Literal
+// We can use for : Escaping HTML Tags, Translation & Internationalization, Styled Components
+
+const nama = 'Kevin';
+const umur = 30;
+
+function coba() {
+    return 'coba';
+}
+
+function coba2(s) {
+    return s;
+}
+
+function coba3(s, nama, umur) {
+    return s + " " + nama + " " + umur;
+}
+
+// We don't know how much the args, we can make it like below, and args is an Array
+function coba4(s, ...args) {
+    // return args; -> return the Expressions as Array
+    // Solution
+    // let result = '';
+    // strs.forEach((str, i) => {
+    //     result += `${str}${values[i] || ''}`;
+    // });
+    // return result;
+    // end Solution
+
+    // Solution 2 (with Higher Order Function)
+    return s.reduce((result, str, i) => `${result}${str}${args[i] || ''}`, '');
+}
+
+// return 'coba'
+const str = coba`Halo, my name is ${nama}, I am ${umur} years old.`;
+console.log(str);
+// end
+
+// return array['Halo, my name is ', ', I am', ' years old.']
+// The expression is not include
+const str2 = coba2`Halo, my name is ${nama}, I am ${umur} years old.`;
+console.log(str2);
+// end
+
+// Actually the expressions are become arguments
+const str3 = coba3`Halo, my name is ${nama}, I am ${umur} years old.`;
+console.log(str3);
+// end
+
+// Solution
+const str4 = coba4`Halo, my name is ${nama}, I am ${umur} years old.`;
+console.log(str4);
+// end
+
+
+// Highlight
+function highlight(s, ...args) {
+    return s.reduce((result, str, i) => `${result}${str}<span class='hl'>${args[i] || ''}</span>`, '');
+}
+const email = 'kevin@gmail.com';
+
+const str5 = highlight`Halo, my name is ${nama}, I am ${umur} years old, and my email is ${email}.`;
+document.body.innerHTML = str5;
+// end
+
+// Escaping / Sanitize HTML Tags
+function sanitize(strings, ...values) {
+    return DOMPurify.sanitize(aboutMe);
+}
+
+const name = 'petyr baelish';
+const aboutMe = `I love to do evil <img src="http://unsplash.it/100/100?random" onload="alert('I hacked you. Haha');" />`;
+
+const html = sanitize`<h3>${name}</h3>
+    <p>${aboutMe}</p>`;
+// end
+
+// Translation (with library i18n)
+const html2 = i18n`Hello ${name}, you have ${amount}:c in your bank account.`;
+// end
+
+// Styled Components
+const title = styled.h1`
+    font-size: 1.5em;
+    text-align: center;
+    color: palevioletred;`;
+</script>

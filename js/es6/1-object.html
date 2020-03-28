@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Object</title>
+</head>
+<body>
+
+<script type="text/javascript">
+	// Cara buat Object pada js
+	// 1. Object Literal
+	// 2. Function Declaration
+	// 3. Constructor Function
+	// 4. Object.create
+
+	// Object Literal
+	// Not effective for more than one objects
+	// let mahasiswa = {
+	// 	nama: 'Sandhika',
+	// 	energi: 10,
+	// 	makan: function(porsi) {
+	// 		this.energi += porsi;
+	// 		console.log(`Selamat makan, ${this.nama}`);
+	// 	}
+	// }
+	// end Object Literal
+
+
+	// Function Declaration
+	// We just like create Template
+	// But when we instance more than one objects, everything inside function will be called and saved in Memory (even we don't need it)
+
+	// function Mahasiswa(nama, energi) {
+	// 	let mahasiswa = {};
+	// 	mahasiswa.nama = nama;
+	// 	mahasiswa.energi = energi;
+	// 	mahasiswa.makan = function(porsi) {
+	// 		this.energi += porsi;
+	// 		console.log(`Energi bertambah menjadi ${this.energi}`);
+	// 	}
+
+	// 	mahasiswa.main = function(jam) {
+	// 		this.energi -= jam;
+	// 		console.log(`Energi berkurang menjadi ${this.energi}`);
+	// 	}
+
+	// return mahasiswa;
+	// }
+
+	// let mhs1 = Mahasiswa('Sandhika', 10);
+	// let mhs2 = Mahasiswa('Doddy', 20);
+
+
+	// to stop above problem that recreate methods more than one, we can use below method that will onnly saves one time in memory
+	// after declare below method, in Function Declaration we change its method to
+	// mahasiswa.makan = methodMahasiswa.makan;
+	// mahasiswa.main = methodMahasiswa.main;
+
+	const methodMahasiswa = {
+		makan: function(porsi) {
+			this.energi += porsi;
+			console.log(`Energi bertambah setelah makan menjadi ${this.energi}`);
+		},
+		main: function(jam) {
+			this.energi -= jam;
+			console.log(`Energi berkurang setelah bermain menjadi ${this.energi}`);
+		},
+		tidur: function(jam) {
+			this.energi += jam * 2;
+			console.log(`Energi bertambah setelah tidur menjadi ${this.energi}`);
+		}
+	}
+	// however a new problem come ! we should declare two times, first for the method variable and Function !
+	// the solution is use Object.create
+	// see example below
+
+	function Mahasiswa(nama, energi) {
+		let mahasiswa = Object.create(methodMahasiswa);
+		// different with {} and Object.create()
+		// accept params from parents or inheritance
+		mahasiswa.nama = nama;
+		mahasiswa.energi = energi;
+
+		return mahasiswa;
+	}
+
+	let mhs1 = Mahasiswa('Sandhika', 10);
+	let mhs2 = Mahasiswa('Doddy', 20);
+	// in this context, we still create two Object (methodMahasiswa and Mahasiswa). We actually only want Mahasiswa, so with Prototype will solve this problem (next practise)
+	// end Function Declaration
+
+
+	// Constructor
+	// function Mahasiswa(nama, energi) {
+	// 	this.nama = nama;
+	// 	this.energi = energi;
+	// 	this.makan = function(porsi) {
+	// 		this.energi += porsi;
+	// 		console.log(`Energi bertambah menjadi ${this.energi}`);
+	// 	}
+
+	// 	this.main = function(jam) {
+	// 		this.energi -= jam;
+	// 		console.log(`Energi berkurang menjadi ${this.energi}`);
+	// 	}
+	// }
+
+	// let mhs1 = new Mahasiswa('Sandhika', 10);
+	// end Constructor
+</script>
+</body>
+</html>

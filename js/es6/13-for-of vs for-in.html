@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<ul>
+		<li class="nama">Sandhika</li>
+		<li class="nama">Doddy</li>
+		<li class="nama">Erik</li>
+	</ul>
+</body>
+</html>
+
+<script type="text/javascript">
+// Iterable Object
+// String, Array, Arguments, NodeList, etc...
+
+// for..of
+const mhs = ['Kevin', 'Bowie', 'Sandhika'];
+for (const m of mhs) {
+	console.log(m);
+}
+
+const nama = 'Sandhika';
+for(const n of nama) {
+	console.log(n); //return each character
+}
+
+// forEach will error, is not a function
+// nama.forEach(n => console.log(n));
+
+mhs.forEach((m, i) => {
+	console.log(`${m} is index of ${i}`);
+});
+// or
+for (const {i, m} of mhs.entries()) {
+	console.log(`${m} is index of ${i}`);
+}
+
+
+// Node List
+const liNama = document.querySelectorAll('.nama');
+console.log(liNama); //return as NodeList
+
+liNama.forEach(n => console.log(n.innerHTML));
+// or
+for(n of liNama) {
+	console.log(n.innerHTML);
+}
+
+
+// Arguments
+// default have variable arguments as Arguments, not Array
+function jumlahAngka() {
+	// forEach, reduce will not work, but...
+	let jumlah = 0;
+	for(a of arguments) { jumlah += a; }
+	return jumlah;
+}
+
+console.log(jumlahAngka(1, 2, 3, 4, 5));
+// End for..of
+
+
+// for..in
+// Only loop for enum (property object), not iterable object
+const siswa = {
+	nama: 'Kevin',
+	umur: 30,
+	email: 'kevin@gmail.com'
+};
+
+for(s in siswa) {
+	console.log(s + " " + siswa[s]);
+}
+// End for..in
+</script>

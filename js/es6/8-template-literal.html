@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+// Template Literal is a string literal which is able to have expressions
+// String Literal -> '', "", ``
+// Template Literal is made with ``
+// Able to create Multi-line String, Embedded Expression, HTML Fragments, Expression Interpolation, Tagged Template
+/*
+`string text`
+`string
+string again
+string again`
+`string text ${expression} string text` -> Embedded Expression
+tag `string text ${expression} string text` -> Tagged Template
+*/
+const mhs = {
+    nama: 'Kevin',
+    umur: 30,
+    nrp: '123456789',
+    email: 'kevin@gmail.com'
+};
+// HTML Fragments
+let el = `<div class="mhs">
+    <h2>${mhs.nama}</h2>
+    <span class="nrp">${mhs.nrp}</span>
+</div>`;
+// End HTML Fragments
+
+// Expression Interpolation
+let a = 10;
+let b = 15;
+console.log(`If a = 10 and b = 15, then its sum is : ${a+b}, not ${2 *a + b}`);
+// End Expression Interpolation
+
+
+// Another ex.
+const nama = 'Kevin';
+const umur = 33;
+console.log(`Halo, my name is ${nama}, and I am ${umur} years old`);
+
+const x = 11;
+console.log(`${1 + 1}`);
+console.log(`${alert('this is alert~')}`);
+console.log(`${x % 2 == 0 ? 'genap' : 'ganjil'}`);
+</script>

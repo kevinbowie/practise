@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+// async is a function works asynchronous, it return (implisit) promise, we code it just like normal function (synchronous function)
+// async function is a function that have 'await' keyword, to temporary stop execute a function till the Promise success (after pending)
+/*
+const prom = new Promise(resolve => {
+	setTimeout(() => resolve('selesai'), 2000);
+});
+// console.log(prom); -> return Pending
+prom.then(() => console.log(coba)); // return the Promise
+*/
+
+
+function cobaPromise() {
+	return new Promise((resolve, reject) => {
+		const waktu = 5000;
+		if (waktu < 5000) {
+			setTimeout(() => resolve('finish'), waktu);
+		}
+		else {
+			reject('too long');
+		}
+	});
+}
+
+/* below still can't use async await 
+const coba = cobaPromise();
+coba
+	.then(() => console.log(coba))
+	.catch(() => console.log(coba));
+
+we will change above to below so it able using async await*/
+
+async function cobaAsync() {
+	try {
+		const coba = await cobaPromise();
+		console.log(coba);
+	}
+	catch(err) {
+		console.error(err);
+	}
+}
+
+cobaAsync();
+</script>

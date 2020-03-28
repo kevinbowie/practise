@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+// Synchrounus Callback 
+/*
+function halo(nama) {
+	alert(`Halo, ${nama}`);
+}
+
+
+function tampilkanPesan(callback) {
+	const nama = prompt('Masukkan Nama : ');
+	callback(nama);
+}
+
+// not halo(), because it will be executed
+tampilkanPesan(halo);
+// or Anonymous Function
+tampilkanPesan(nama => alert(`Halo, ${nama}`));
+*/
+// End Synchronus Callback
+
+
+// Async Callback
+const mhs = [
+	{
+		"nama": "Kevin",
+		"nrp": "12456789",
+		"email": "kevin@gmail.com",
+		"jurusan": "Teknik Informatika",
+		"idDosenWali": 1,
+	},
+	{
+		"nama": "Bowie",
+		"nrp": "978654321",
+		"email": "bowie@gmail.com",
+		"jurusan": "Teknik Informatika",
+		"idDosenWali": 2,
+	},
+	{
+		"nama": "Sandhika",
+		"nrp": "456789123",
+		"email": "sandhika@gmail.com",
+		"jurusan": "Teknik Informatika",
+		"idDosenWali": 2,
+	}
+];
+
+// example we get data from API takes 100000 seconds using Sync Callback
+// console.log('start');
+// mhs.forEach(m => {
+// 	for(let i=0;i<1000000000;i++){}
+// 	console.log(m.nama);
+// });
+// console.log('finish');
+
+// note : use web server to run below
+function getDataMahasiswa(url, success, error) {
+	let xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if(xhr.readyState === 4) {
+			if(xhr.status === 200) {
+				success(xhr.response);
+			}
+			else if(xhr.status === 404) {
+				error();
+			}
+		}
+	}
+	xhr.open('GET', url);
+	xhr.send();
+}
+
+console.log('start');
+getDataMahasiswa('data/mahasiswa.json', (results) => {
+	const mhs = JSON.parse(results);
+	mhs.forEach(m => console.log(m.nama));
+}, () => {
+
+});
+console.log('finish');
+
+
+</script>

@@ -1,0 +1,99 @@
+<script type="text/javascript">
+	function init() {
+		let nama = 'Sandhika'; //local variable
+		function tampilNama() { //inner function (closure, because this function used its parent variable)
+			console.log(nama); //access parent variable
+		}
+
+		tampilNama();
+		// console.dir(tampilNama) will show Closure in Scopes in its object
+	}
+
+	init();
+	// return Sandhika
+
+
+
+	// if tampilNama() above changes to return tampilNama, then init() will return nothing
+	// but if we change init() to 
+	// let panggilNama = init();
+	// below will return the result
+	// panggilNama(); //return Sandhika
+
+	// below is the full code
+	// function init() {
+	// 	function tampilNama(nama) {
+	// 		console.log(nama):
+	// 	}
+
+	// 	return tampilNama;
+	// }
+
+	// let panggilNama = init();
+	// panggilNama('Sandhika'); // return Sandhika
+
+	// or as anonymous function
+	// function init() {
+	// 	return function(nama) {
+	// 		console.log(nama);
+	// 	}
+	// }
+	// let panggilNama = init();
+	// panggilNama('Sandhika');
+
+	// reason we use Closure :
+	// 1. to create Function Factories (like above) 
+	// 2. to create private method
+
+
+
+	// Function Factories
+	// function ucapkanSalam(waktu) {
+	// 	return function(nama) {
+	// 		console.log(`Halo ${nama}, Selamat ${waktu}, semoga harimu menyenangkan!`);
+	// 	}
+	// }
+
+	// let selamatPagi = ucapkanSalam('Pagi');
+	// let selamatSiang = ucapkanSalam('Siang');
+	// let selamatMalam = ucapkanSalam('Malam');
+
+	// selamatPagi('Sandhika');
+	// selamatSiang('Sandhika');
+	// selamatMalam('Sandhika');
+	// end Function Factories
+
+
+	// Private Method
+	// ex we have big code below
+	// let count = 0;
+	// let add = function() {
+	// 	return ++counter;
+	// }
+	// ... big code
+	// // then we unexpected change counter value
+	// counter = 10;
+
+	// console.log(add());
+	// console.log(add());
+	// console.log(add());
+	// above code will not return 1, 2, 3, but 11, 12, 13
+
+
+	// below is the solution
+	// make variable counter become private scope when execute add()
+	// immediate invoke function
+	let add = (function() {
+		let counter = 0;
+		return function() {
+			return ++counter;
+		}
+	})();
+
+	counter = 100; // will be different variable 
+
+	console.log(a()); // 1, 
+	console.log(a()); // 2
+	console.log(a()); // 3
+	// end Private Method
+</script>

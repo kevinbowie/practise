@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		body {
+			background-color: salmon;
+			text-align: center;
+		}
+
+		.nama {
+			font-size: 80px;
+			font-family: arial;
+			color: white;
+		}
+
+		.nama span {
+			display: inline-block;
+			transition: .3s;
+			cursor: pointer;
+		}
+
+		.nama span:hover {
+			transform: scale(2) translateY(-20px);
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li>Sandhika</li>
+		<li>Doddy</li>
+		<li>Erik</li>
+	</ul>
+
+	<h1 class="nama">Sandhika</h1>
+</body>
+</html>
+
+<script>
+	// Spread Operator
+	// Expand iterables into single element 
+	// Iterables -> String, Array, Map, Set, NodeList, Arguments
+
+	const mhs = ['Sandhika', 'Doddy', 'Erik'];
+	console.log(...mhs); //return Sandhika Doddy Erik
+	console.log(...mhs[0]); //return S a n d h i k a
+	
+	const dosen = ['Ade', 'Hendra', 'Wanda'];
+	const orang = [...mhs, 'Aji', ...dosen];
+	console.log(orang); //return combination two arrays / concat Array
+	const org = mhs.concat(dosen);
+	console.log(org);
+
+	// Copying array
+	// const mhs1 = mhs;
+	// But when we change mhs1[i], mhs also change, because it is ByReference
+	// mhs1[0] = mhs;
+	// console.log(mhs);
+	// console.log(mhs1);
+
+	const mhs1 = [...mhs]; //Totally copy to a new array
+
+
+	const liMhs = document.querySelectorAll('li');
+	const mahasiswa = [...liMhs].map(m => m.textContent);
+	console.log(mahasiswa);
+
+	const nama = document.querySelector('.nama');
+	const huruf = [...nama.textContent].map(n => `<span>${n}</span>`).join('');
+	console.log(huruf);
+	nama.innerHTML = huruf;
+</script>

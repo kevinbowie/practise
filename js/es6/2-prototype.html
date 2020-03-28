@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Prototype</title>
+</head>
+<body>
+
+<script type="text/javascript">
+	// Constructor Function
+	// with this Function, JS automatically creates 
+	// let this = Object.create(Mahasiswa.prototype);
+	// and creates
+	// return this;
+
+	// function Mahasiswa(nama, energi) {
+	// 	this.nama = nama;
+	// 	this.energi = energi;
+	// }
+
+	// Mahasiswa.prototype.makan = function(porsi) {
+	// 	this.energi += porsi;
+	// 	return `Energi bertambah setelah makan menjadi ${this.energi}`;
+	// }
+
+	// Mahasiswa.prototype.main = function(jam) {
+	// 	this.energi -= jam;
+	// 	return `Energi berkurang setelah bermain menjadi ${this.energi}`;
+	// }
+
+	// Mahasiswa.prototype.tidur = function(jam) {
+	// 	this.energi += jam * 2;
+	// 	return `Energi bertambah setelah tidur menjadi ${this.energi}`;
+	// }
+
+	// let mhs1 = new Mahasiswa('Sandhika', 10);
+	// let mhs2 = new Mahasiswa('Doddy', 20);
+	// end Constructor Function 
+
+
+	// Class version
+	// walaupun sebenarnya class ini menjalankan prototype juga
+	class Mahasiswa {
+		constructor(nama, energi) {
+			this.nama = nama;
+			this.energi = energi;
+		}
+
+		makan(porsi) {
+			this.energi += porsi;
+			return `Energi bertambah setelah makan menjadi ${this.energi}`;
+		}
+
+		main(jam) {
+			this.energi -= jam;
+			return `Energi berkurang setelah bermain menjadi ${this.energi}`;
+		}
+
+		tidur(jam) {
+			this.energi += jam * 2;
+			return `Energi bertambah setelah tidur menjadi ${this.energi}`;
+		}
+	}
+
+	let mhs = new Mahasiswa('Sandhika', 10);
+	// end Class
+
+	// Actually when we create Class, prototype properties is called too.
+	// Another ex. in background
+	// let angka = []; -> creates let angka = new Array(); -> inheritance from prototype  
+	// and Array is a prototype
+	// function Array() {
+	// 	let this = Object.create(Array.prototype);
+	// }
+</script>
+</body>
+</html>

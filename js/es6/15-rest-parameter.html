@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+	// Represent arguments in function with unlimited into a array
+	// Must be placed at last format parameter
+
+	// function myFunc(a, b, ...myArgs) {
+	// 	return `a = ${a}, b = ${b}, myArgs = ${myArgs}`;
+	// }
+	function myFunc() {
+		// arguments is default variable as Arguments
+		// return Array.from(arguments);
+		// or
+		return [...arguments];
+	}
+	console.log(myFunc(1, 2, 3, 4, 5));
+
+
+
+	function jumlahkan(...angka) {
+		return angka.reduce((acc, curr) => acc + curr);
+	}
+	console.log(jumlahkan(1, 2, 3, 4, 5));
+
+
+	// array destructuring
+	const kelompok1 = ['Sandhika', 'Kevin', 'Bowie', 'Erik', 'Fajar'];
+	const [ketua, wakil, ...angkota] = kelompok1;
+
+
+	// object destructuring
+	const team = {
+		pm: 'Sandhika',
+		frontEnd1: 'Doddy',
+		frontEnd2: 'Erik',
+		backEnd: 'Fajar',
+		ux: 'Hendra',
+		devOps: 'Ferry'
+	};
+
+	const {pm, ...myTeam} = team;
+	console.log(pm + " " + myTeam);
+
+
+	// filtering
+	function filterBy(type, ...values) {
+		return values.filter(v => typeof v === type);
+	}
+
+	console.log(filterBy('number', 1, 2, 'Sandhika', false, 10, 10, true, 'Doddy'));
+</script>
