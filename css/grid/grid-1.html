@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<!-- CSS Grid is more complex than Flex, because it can use for 2 dimensions layout -->
+	<!-- To use it, apply display: grid; -->
+	<style>
+		body, html {
+			margin: 0;
+			padding: 0;
+			font-size: 20px;
+			font-family: arial;
+			color: white;
+			text-transform: uppercase;
+			text-align: center;
+		}
+
+		.container {
+			width: 600px;
+			margin: 50px auto;
+			border: 5px solid #333;
+			box-sizing: border-box;
+			padding: 5px;
+		}
+
+/*		USING FLOAT
+		.content::after {
+			content: '';
+			display: block;
+			clear: both;
+		}
+
+		.sidebar {
+			float: left;
+			width: 40%;
+		}
+
+		main {
+			background-color: #E0AA77;
+			padding: 171.5px;
+			float: right;
+			width: 60%;
+			box-sizing: border-box;
+		}
+*/
+
+/*		BY USING FLEX
+		.content {
+			display: flex;
+		}
+
+		.sidebar {
+			flex: 1;
+		}
+
+		.sidebar aside {
+			background-color: #2F93FF;
+			padding: 60px 0;
+		}
+
+		.sidebar nav {
+			background-color: #E45765;
+			padding: 100px 0;
+		}
+
+		main {
+			background-color: #E0AA77;
+			flex: 1.5;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+*/
+		.container {
+			display: grid;
+			grid-template-areas: "header header"
+				 "aside main"
+				 "nav main"
+				 "footer footer";
+			grid-template-columns: 1fr 1.5fr;
+			grid-template-rows: 1fr 1fr 1.3fr;
+		}
+
+		header {
+			background-color: #B063D8;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			grid-area: header;
+		}
+
+		aside {
+			background-color: #2F93FF;
+			padding: 60px 0;
+			grid-area: aside;
+		}
+
+		nav {
+			background-color: #E45765;
+			padding: 100px 0;
+			grid-area: nav;
+		}
+
+		main {
+			background-color: #E0AA77;
+			grid-area: main;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		footer {
+			background-color: #666;
+			padding: 20px 0;
+			grid-area: footer;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<header>Header</header>
+		<!-- By using Grid, we don't need .content and .sidebar again -->
+		<aside>Aside</aside>
+		<nav>Nav</nav>
+		<main>Main</main>
+
+		<!-- Start Flex -->
+		<!-- <div class="content">
+			<div class="sidebar">
+				<aside>Aside</aside>
+				<nav>Nav</nav>
+			</div>
+			<main>Main</main>
+		</div> -->
+		<!-- End Flex -->
+
+		<!-- Start Float -->
+		<!-- <div class="content">
+			<div class="sidebar">
+				<aside>Aside</aside>
+				<nav>Nav</nav>
+			</div>
+			<main>Main</main>
+			<div class="both"></div>
+		</div> -->
+		<!-- End Float -->
+		<footer>Footer</footer>
+	</div>
+</body>
+</html>
